@@ -12,6 +12,7 @@
 <body>
     <input type="file" id="file" />
     <button id="export">Export</button>
+    <button id="download">Download</button>
     <div id="zip_size"></div>
 
     <script>
@@ -19,11 +20,13 @@
 
         document.getElementById('export').addEventListener('click',function(){
             files2zip64();
+        });
+        document.getElementById('download').addEventListener('click',function(){
             saveAs(new Blob([b64zip]), "jszip64.txt");
             //saveAs('data:application/zip;base64,' + b64zip, 'export.zip');
         });
 
-        function files2zip64(){
+        async function files2zip64(){
             var files = document.getElementById('file').files;
             if(!files.length) return;
 
